@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  duckdb-env:
+    build: .
+    container_name: duckdb_python
+    restart: unless-stopped
+    ports:
+      - "8888:8888" # Accès à Jupyter
+    volumes:
+      - ..:/workspace # Synchronise le dossier courant avec /workspace dans le conteneur
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --ServerApp.token='' --ServerApp.password=''
